@@ -1,4 +1,4 @@
-OBJECTS = main.o
+OBJECTS = main.o mutex_via_channel.o
 CFLAGS += -std=c99 -Wpedantic -Wall -Wextra -O2
 LDFLAGS += -lmill
 

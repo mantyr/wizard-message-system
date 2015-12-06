@@ -5,24 +5,18 @@ import (
 	"time"
 )
 
-var (
-	mutex = newMutexViaChannel()
-	value = 0
-)
+var dataStorage = newStorage()
 
 func backgroundTask() {
-	mutex.Lock()
-	defer mutex.Unlock()
+	data := dataStorage.getData("data")
+	fmt.Println("data =", data.(int))
 
-	time.Sleep(2 * time.Second)
-	value = 23
+	dataStorage.addData("dump", nil)
 }
 
 func mainTask() {
-	mutex.Lock()
-	defer mutex.Unlock()
-
-	fmt.Println("value =", value)
+	dataStorage.addData("data", 23)
+	dataStorage.getData("dump")
 }
 
 func main() {

@@ -5,18 +5,16 @@ import (
 	"time"
 )
 
-var dataStorage = newStorage()
-
 func backgroundTask() {
-	data := dataStorage.getData("data")
+	data := receive("data")
 	fmt.Println("data =", data.(int))
 
-	dataStorage.addData("dump", nil)
+	send("dump", nil)
 }
 
 func mainTask() {
-	dataStorage.addData("data", 23)
-	dataStorage.getData("dump")
+	send("data", 23)
+	receive("dump")
 }
 
 func main() {

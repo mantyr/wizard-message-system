@@ -5,6 +5,6 @@
 
 typedef data_map_item* data_map;
 
-void data_map_add(data_map* map, const char* id, int data);
+void data_map_add(data_map* map, const char* id, chan channel);
 data_map_item* data_map_find(data_map* map, const char* id);
 #endif

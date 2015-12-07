@@ -1,8 +1,8 @@
 #ifndef DATA_MAP_ITEM_HEADER
 #define DATA_MAP_ITEM_HEADER
 
-#include "uthash.h"
 #include <libmill.h>
+#include <uthash.h>
 
 typedef struct data_map_item {
 	const char* id;

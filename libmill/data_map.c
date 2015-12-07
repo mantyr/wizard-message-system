@@ -1,6 +1,6 @@
 #include "data_map.h"
-#include "uthash.h"
 #include <string.h>
+#include <uthash.h>
 
 void data_map_add(data_map* map, const char* id, chan channel) {
 	data_map_item* item = new_data_map_item(id, channel);

@@ -1,18 +1,29 @@
-#include "data_map.h"
+#include "storage.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <libmill.h>
 
-static data_map map = NULL;
+static storage* store = NULL;
+
+coroutine void background_task() {
+	int data = storage_get_data(store, "data");
+	printf("data = %d\n", data);
+
+	storage_add_data(store, "dump", 0);
+}
+
+void main_task() {
+	storage_add_data(store, "data", 23);
+	storage_get_data(store, "dump");
+}
 
 int main() {
-	chan channel = chmake(uint8_t, 1);
-	chs(channel, uint8_t, 12);
+	store = new_storage();
 
-	data_map_add(&map, "test", channel);
-	data_map_item* item = data_map_find(&map, "test");
+	go(background_task());
 
-	int value = chr(item->channel, uint8_t);
-	printf("%s: %d\n", item->id, value);
+	msleep(now() + 1000);
+	main_task();
 
 	return EXIT_SUCCESS;
 }

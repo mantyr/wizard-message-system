@@ -15,3 +15,7 @@ void mutex_lock(mutex_via_channel mutex) {
 void mutex_unlock(mutex_via_channel mutex) {
 	chs(mutex, uint8_t, 1);
 }
+
+void mutex_free(mutex_via_channel mutex) {
+	chclose(mutex);
+}

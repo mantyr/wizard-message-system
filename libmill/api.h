@@ -4,4 +4,5 @@
 void initialize_messages();
 void send(const char* id, void* data);
 void* receive(const char* id);
+void messages_free();
 #endif

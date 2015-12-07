@@ -14,3 +14,7 @@ void send(const char* id, void* data) {
 void* receive(const char* id) {
 	return storage_get_data(store, id);
 }
+
+void messages_free() {
+	storage_free(store);
+}

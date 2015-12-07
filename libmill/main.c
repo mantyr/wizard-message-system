@@ -25,5 +25,6 @@ int main() {
 	msleep(now() + 1000);
 	main_task();
 
+	messages_free();
 	return EXIT_SUCCESS;
 }

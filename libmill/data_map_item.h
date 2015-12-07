@@ -11,4 +11,5 @@ typedef struct data_map_item {
 } data_map_item;
 
 data_map_item* new_data_map_item(const char* id, chan channel);
+void data_map_item_free(data_map_item* item);
 #endif

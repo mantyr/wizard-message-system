@@ -15,4 +15,5 @@ void* storage_get_data(storage* store, const char* id);
 void storage_add_data(storage* store, const char* id, void* data);
 chan storage_get_channel(storage* store, const char* id);
 void storage_add_channel_if_need(storage* store, const char* id);
+void storage_free(storage* store);
 #endif

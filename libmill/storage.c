@@ -1,7 +1,8 @@
 #include "storage.h"
+#include <stdlib.h>
 
 storage* new_storage() {
-	storage* store = malloc(sizeof(storage));;
+	storage* store = malloc(sizeof(storage));
 	store->mutex = new_mutex_via_channel();
 	store->map = NULL;
 
@@ -34,4 +35,10 @@ void storage_add_channel_if_need(storage* store, const char* id) {
 		chan channel = chmake(void*, 0);
 		data_map_add(&store->map, id, channel);
 	}
+}
+
+void storage_free(storage* store) {
+	mutex_free(store->mutex);
+	data_map_free(&store->map);
+	free(store);
 }

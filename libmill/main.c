@@ -1,25 +1,24 @@
-#include "storage.h"
+#include "api.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <libmill.h>
 
-static storage* store = NULL;
 static int data = 23;
 
 coroutine void background_task() {
-	int* data = storage_get_data(store, "data");
+	int* data = receive("data");
 	printf("data = %d\n", *data);
 
-	storage_add_data(store, "dump", 0);
+	send("dump", NULL);
 }
 
 void main_task() {
-	storage_add_data(store, "data", &data);
-	storage_get_data(store, "dump");
+	send("data", &data);
+	receive("dump");
 }
 
 int main() {
-	store = new_storage();
+	initialize_messages();
 
 	go(background_task());
 

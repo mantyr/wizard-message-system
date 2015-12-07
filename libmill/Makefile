@@ -1,4 +1,4 @@
-OBJECTS = main.o storage.o data_map.o data_map_item.o mutex_via_channel.o
+OBJECTS = main.o api.o storage.o data_map.o data_map_item.o mutex_via_channel.o
 CFLAGS += -std=c99 -Wpedantic -Wall -Wextra -O2
 LDFLAGS += -lmill
 
